@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <link rel="stylesheet" href="_styles/sidebar.min.css">
+</head>
+
+<style>
+  .pt-message {
+    display: none;
+    width: 100%;
+    height: 50px;
+    background: #ffe8d8;
+    color: #f86e45;
+    text-align: center;
+    border:1px dotted #fdab63;
+    z-index: 99999;
+  }
+  .pt-message p {
+    margin: 0;
+    line-height: 50px;
+    font-size: 20px;
+  }
+  .search-key {
+    background: #ff9800 !important;
+    color: #fff !important;
+  }
+</style>
+<body>
+  <div id="pt-message" class="pt-message">
+    <p id="msg"></p>
+  </div>
+
+  <nav>
+    <a href="#/">EN</a>
+    <a href="#/zh-CN">简体中文</a>
+  </nav>
+
+  <div id="app">Loading ...</div>
+
+  <script>
+    window.$docsify = {
+      coverpage: true,
+      auto2top: true,
+      executeScript: true,
+      relativePath: true,
+      loadNavbar: true,
+      loadSidebar: true,
+      mergeNavbar: true,
+      maxLevel: 1,
+      subMaxLevel: 4,
+      //repo: 'http://192.168.0.190:3000/docs/docs-online.git',
+      name: 'docs online',
+      homepage: 'en-US/README.md',
+
+
+      autoHeader: true,
+
+      coverpage: ['/'],
+      requestHeaders: {
+        'cache-control': 'max-age=5',
+      },
+      scrollToTop: {
+        auto: true,
+        text: 'Top',
+        right: 15,
+        bottom: 15,
+        offset: 500
+      },
+      'flexible-alerts': {
+        style: 'flat'
+      },
+      tabs: {
+        persist: true,     
+        sync: true,     
+        theme: 'classic', 
+        tabComments: true,      
+        tabHeadings: true       
+      },
+
+      formatUpdated: function(time) {
+        return new Date(time).toLocaleString();
+      },
+      search: {
+        placeholder: {
+                '/': '搜索',
+                '/zh-CN/': '搜索',
+                '/en-US/': 'Type to search'
+            },
+        noData: {
+            '/': '找不到结果',
+            '/zh-CN/': '找不到结果',
+            '/en-US/': 'No Results'
+        },
+        depth: 5,
+        paths: 'auto',
+        namespace: 'eview-docs',
+        pathNamespaces: ['/']
+      },
+      hideCode:{
+        scroll: false,
+        height: 300
+      },
+      plugins: [
+          // Restores initial <title>
+          function persistTitle(hook, vm) {
+            var titleElm = document.querySelector('title');
+            var rootTitle = titleElm && titleElm.textContent;
+            var pageTitlePrefix = window.$docsify.name ? window.$docsify.name + ' - ' : '';
+
+            if (rootTitle) {
+              hook.doneEach(function () {
+                var currentTitle = titleElm.textContent;
+                var isRoot = !/\/[a-z]/.test(location.hash);
+                var newTitle = isRoot ? rootTitle : pageTitlePrefix + currentTitle;
+
+                titleElm.textContent = newTitle;
+              });
+            }
+          }
+        ]
+
+
+      // auth
+      // auth: {
+      //   enable: false, // 是否开启
+      //   use: "sha256",
+      //   password: "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92", // md5密码
+      //   title: "请输入密码以访问文档：", // 设置标题
+      //   paths: ["^/dynamix"] // 需要认证的路径，支持正则表达式匹配
+      // }
+    }
+  </script>
+
+  <!-- Docsify v4 -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+
+  <!-- 在 docsify 主脚本之后添加搜索插件 -->
+  <!-- 分页导航 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <!-- 新增 Draw.io 支持 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-drawio@1"></script>
+  <script src="_scripts/search.min.js"></script>
+  <script src="_scripts/emoji.min.js"></script>
+  <script src="_scripts/prism-c.min.js"></script>
+
+  <script src="_scripts/docsify-sidebar-collapse.min.js"></script>
+  <script src="_scripts/docsify-scroll-to-top.min.js"></script>
+  <script src="_scripts/docsify-copy-code.js"></script>
+  <script src="_scripts/zoom-image.min.js"></script>
+  <script src="_scripts/external-script.min.js"></script>
+  <!-- <script src="_scripts/sweetalert.min.js"></script> -->
+  <script src="_scripts/docsify-plugin-flexible-alerts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-sidebar-autoscroll/dist/docsify-sidebar-autoscroll.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-hide-code/dist/docsify-hide-code.min.js"></script>
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@latest"></script>
+
+
+  
+  <!-- body -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/js-sha256@0.9.0/build/sha256.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-auth@1.2.0/dist/docsify-auth.min.js"></script> -->
+</body>
+
+</html>
+<style>
+  /* 强制显示无序列表符号 */
+  .markdown-section ul {
+    list-style-type: disc !important;
+    padding-left: 2em !important;
+  }
+  
+  /* 强制显示有序列表数字 */
+  .markdown-section ol {
+    list-style-type: decimal !important;
+    padding-left: 2em !important;
+  }
+</style>
