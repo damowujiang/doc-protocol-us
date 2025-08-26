@@ -1,79 +1,77 @@
-设备数据
-
-
-待完成列表：
-- [ ] 补充数据交换时序流程图
-- [ ] 补充之前的数据格式，以及对数据类型说明。
+Data 
 
 ---
 
+The data records include the following:
+* Health data generated during device usage
+* Device status information
+* Device usage logs
 
-待完成列表：
-- [ ] 补充数据交换时序流程图
-- [ ] 补充之前的数据格式，以及对数据类型说明。
+The data records are organized by category:
+* Device identity information – used to identify the device’s uniqueness
 
----
+* Device status changes – such as network status changes
 
-数据记录包含了以下内容：
-* 设备使用过程中的健康数据
-* 设备的状态信息
-* 设备的使用记录
+* Location information – positioning records obtained from different modules
 
-数据记录按类整理：
-* 设备的身份信息，用于识别设备的唯一性
-* 设备的状态变化，设备的网络变化
-* 定位信息，不同模块获取到的定位记录
-* 健康记录，如计步、心率、睡眠等，用于分析查看使用者的健康情况。
-* 健康数据第三方来源，从第三方配件上传过来的健康数据。
-* 设备的使用记录，记录设备使用状态、关键记录。
+* Health records – such as step count, heart rate, and sleep data, used to analyze and review the user’s health
+  condition
 
-## Key列表
-| Value<br>(HEX) | Parameter           | 功能描述               | 可写 | 可读 | 通知 |
-| -------------- | ------------------- | ---------------------- | ---- | ---- | ---- |
-| [0x01](#_0x01) | DeviceId            | 设备ID                 | ❌    | ❌    | ✅    |
-| [0x02](#_0x02) | CustomizedId        | 用户自定义ID           | ❌    | ❌    | ✅    |
-| [0x03](#_0x03) | Iccid               | ICCID                  | ❌    | ❌    | ✅    |
-| [0x10](#_0x10) | AlarmCode           | 报警代码               | ❌    | ❌    | ✅    |
-| [0x11](#_0x11) | DeviceStatus        | 设备状态               | ❌    | ❌    | ✅    |
-| [0x20](#_0x20) | Gps                 | GPS定位记录            | ❌    | ❌    | ✅    |
-| [0x21](#_0x21) | Gsm                 | 基站定位记录           | ❌    | ❌    | ✅    |
-| [0x22](#_0x22) | Ble                 | BLE定位记录            | ❌    | ❌    | ✅    |
-| [0x23](#_0x23) | Homebeacon          | homebeacon定位记录     | ❌    | ❌    | ✅    |
-| [0x24](#_0x24) | Beacon              | Beacon 定位记录        | ❌    | ❌    | ✅    |
-| [0x25](#_0x25) | Homewifi            | homewifi定位记录       | ❌    | ❌    | ✅    |
-| [0x26](#_0x26) | Wifi                | WiFi 定位记录          | ❌    | ❌    | ✅    |
-| [0x40](#_0x40) | CallRecord          | 通话记录               | ❌    | ❌    | ✅    |
-| [0x41](#_0x41) | BleConnection       | BLE连接记录            | ❌    | ❌    | ✅    |
-| [0x42](#_0x42) | AccessoryStatus     | 配件状态               | ❌    | ❌    | ✅    |
-| [0x50](#_0x50) | DailyStep           | 天步数                 | ❌    | ❌    | ✅    |
-| [0x51](#_0x51) | HourlyStep          | 每小时步数记录         | ❌    | ❌    | ✅    |
-| [0x52](#_0x52) | HourlyActivity      | 每小时活动记录         | ❌    | ❌    | ✅    |
-| [0x53](#_0x53) | Activity            | 活跃度记录             | ❌    | ❌    | ✅    |
-| [0x54](#_0x54) | StaticData          | 静止记录               | ❌    | ❌    | ✅    |
-| [0x60](#_0x60) | HeartRate           | 心率测量记录           | ❌    | ❌    | ✅    |
-| [0x61](#_0x61) | BloodOxygen         | 血氧测量记录           | ❌    | ❌    | ✅    |
-| [0x62](#_0x62) | HRV                 | HRV测量记录            | ❌    | ❌    | ✅    |
-| [0xA0](#_0xA0) | ThirdPartyAccessory | 第三方配件健康测量记录 | ❌    | ❌    | ✅    |
-| [0xC0](#_0xC0) | DeviceResetReason   | 设备复位原因           | ❌    | ✅    | ❌    |
+* Third-party health data sources – health data uploaded from third-party accessories
 
+* Device usage logs – records of device usage status and key events
 
+  
 
 ---
 
-## 命令描述
+## Key List
+| Value<br>(HEX) | Parameter           | Function Description                            | 可写 | 可读 | 通知 |
+| -------------- | ------------------- | ----------------------------------------------- | ---- | ---- | ---- |
+| [0x01](#_0x01) | DeviceId            | Device ID                                       | ❌    | ❌    | ✅    |
+| [0x02](#_0x02) | CustomizedId        | User-defined ID                                 | ❌    | ❌    | ✅    |
+| [0x03](#_0x03) | Iccid               | Device ICCID                                    | ❌    | ❌    | ✅    |
+| [0x10](#_0x10) | AlarmCode           | Alarm code record                               | ❌    | ❌    | ✅    |
+| [0x11](#_0x11) | DeviceStatus        | Device status record                            | ❌    | ❌    | ✅    |
+| [0x20](#_0x20) | Gps                 | GPS positioning record                          | ❌    | ❌    | ✅    |
+| [0x21](#_0x21) | Gsm                 | Cell tower positioning record                   | ❌    | ❌    | ✅    |
+| [0x22](#_0x22) | Ble                 | BLE positioning record                          | ❌    | ❌    | ✅    |
+| [0x23](#_0x23) | Homebeacon          | Home Beacon positioning record                  | ❌    | ❌    | ✅    |
+| [0x24](#_0x24) | Beacon              | Beacon positioning record                       | ❌    | ❌    | ✅    |
+| [0x25](#_0x25) | Homewifi            | home wifi positioning record                    | ❌    | ❌    | ✅    |
+| [0x26](#_0x26) | Wifi                | Wi-Fi positioning record                        | ❌    | ❌    | ✅    |
+| [0x40](#_0x40) | CallRecord          | Call record                                     | ❌    | ❌    | ✅    |
+| [0x41](#_0x41) | BleConnection       | BLE connection record                           | ❌    | ❌    | ✅    |
+| [0x42](#_0x42) | AccessoryStatus     | Accessory status                                | ❌    | ❌    | ✅    |
+| [0x50](#_0x50) | DailyStep           | Daily step count                                | ❌    | ❌    | ✅    |
+| [0x51](#_0x51) | HourlyStep          | Hourly step count record                        | ❌    | ❌    | ✅    |
+| [0x52](#_0x52) | HourlyActivity      | Hourly activity record                          | ❌    | ❌    | ✅    |
+| [0x53](#_0x53) | Activity            | Activity record                                 | ❌    | ❌    | ✅    |
+| [0x54](#_0x54) | StaticData          | Inactivity record                               | ❌    | ❌    | ✅    |
+| [0x60](#_0x60) | HeartRate           | Heart rate measurement record                   | ❌    | ❌    | ✅    |
+| [0x61](#_0x61) | BloodOxygen         | Blood oxygen measurement record                 | ❌    | ❌    | ✅    |
+| [0x62](#_0x62) | HRV                 | HRV (Heart Rate Variability) measurement record | ❌    | ❌    | ✅    |
+| [0xA0](#_0xA0) | ThirdPartyAccessory | Third-party accessory health measurement record | ❌    | ❌    | ✅    |
+| [0xC0](#_0xC0) | DeviceResetReason   | Device reset reason                             | ❌    | ✅    | ❌    |
+
+
 
 ---
 
-### (0x01)设备ID :id=0x01
+## Command Description
+
+---
+
+### (0x01)DeviceID :id=0x01
 
 
-**功能描述**
+**Function Description**
 
-设备ID用于向上层提供设备唯一标识。当使用设备的`IMEI`, 参考[配置命令中-IMEI](cmd-configuration.md)。
+The device ID is a unique identifier to the upper-level system/ backend server / platform.
 
+All device data must be concatenated with the device ID
 
-
-**写请求数据格式**
+**Notification Data Format**
 
 length+key+value
 
@@ -84,33 +82,32 @@ length+key+value
 | 3-n | IMEI | String | ascii | IMEI, Type: String, length:[1, 32] |
 
 Note:
-1. 上报数据时,一帧数据包含 IMEI号必须第一个item是length-key-value, 以方便服务器快速解析判断当前设备是否合法。
+1. The uploaded data packet consists of: `Standard Protocol Header` + `Device ID` + `Device Status Item` + `User-Defined Code Item (optional)` + `Device ICCID Item (optional)` + `Other Record Data Items`
+2. The data response packet consists of: `Standard Protocol Header` + `Data Command`. If the response is normal, the current historical data will be cleared.
+3. When reporting data, a single data frame must contain the IMEI number, and the first item must follow the
+   `length–key–value` format to allow the server to quickly parse and verify whether the device is valid.
 
 ---
 
 
-### (0x02)用户自定义码 :id=0x02
+### (0x02) User-Defined ID :id=0x02
 
+**Function Description**
 
-**功能描述**
+The device has a Custom Device ID , which is an additional identification code defined by the server.
 
-设备自定义识别码，由服务器定义的另一个设备识别标识，在[配置命令中-设备自定义识别码](cmd-configuration.md)中配置后自动启用。
+Once configured in the server settings, this ID will be automatically activated.
+Whenever the device communicates with the server, it will include this code in the data transmission.
 
-
-
-**写请求数据格式**
-
-length+key+value
+**Notification Data Format**
 
 | byte No. | Parameter | Type | Converter | Description |
 | --- | --- | --- | --- | --- |
 | 1 | length |  byte |  | key+value |
 | 2 | key | byte |  | key |
-| 3-n | customDeviceID | String | ascii | 自定义设备ID, length:[0, 32] |
+| 3-n | customDeviceID | String | ascii | length:[0, 32] |
 
-Note:
-1. 当设备自定义识别码 被设置为非空时，上报数据时，必须包含自定义识别码，它跟在`设备ID`后面，作为第二个`length-key-value`
-2. 当设备自定义识别码 被设置为空时，上报数据时，不能包含自定义识别码。
+
 
 
 ---
@@ -118,185 +115,197 @@ Note:
 
 ### (0x03)ICCID :id=0x03
 
+**Function Description**
+The ICCID (Integrated Circuit Card Identifier) is used to uniquely identify the SIM card.
 
-**功能描述**
-ICCID是集成电路卡识别码，用于唯一标识SIM卡。为可选上报数据类型。
-
-
-
-**写请求数据格式**
-
-length+key+value
+**Notification Data Format**
 
 | byte No. | Parameter | Type | Converter | Description |
 | --- | --- | --- | --- | --- |
 | 1 | length |  byte |  | key+value |
 | 2 | key | byte |  | key |
-| 3-n | ICCID | String | ascii | ICCID, 类型:字符串 |
+| 3-n | ICCID | String | ascii | ICCID string |
 
 ---
 
-### (0x10) 警报数据 :id=0x10
+### (0x10) Alarm Data Record :id=0x10
 
+**Function Description**
 
-**功能描述**
+Whenever there is a change in an emergency, critical, or subscription event, the device should promptly report the corresponding status information to the server.
 
-当设备发生 紧急/重要/订阅的事件 变化，需要及时向服务器上传相关事件的状态信息描述。
-
-
-
-**写请求数据格式**
-
-length+key+value
+**Notification Data Format**
 
 | byte No. | Parameter | Type | Converter | Description |
 | --- | --- | --- | --- | --- |
 | 1 | length |  byte |  | key+value |
 | 2 | key | byte |  | key |
-| 3-6 | dateTime | uint | unixTime | 报警时间戳 |
-| 7-n | statusEvent | array | bits | 状态/事件<br />bit0:1为低电报警<br />bit1:1为超速报警<br />bit2:1为跌倒报警<br />bit3:1为倾斜报警<br />bit4:1为geo1-out报警<br />bit5:1为geo1-in报警<br />bit6:1为geo2-out报警<br />bit7:1为geo2-in报警<br />bit8:1为关机报警<br />bit9:1为开机报警<br />bit10:1为移动报警<br />bit11:1为不移动报警<br />bit12:1为sos报警<br />bit13:1为sos结束报警<br />bit14:1跌倒结束报警<br />bit15:1倾斜结束报警<br />bit24:1为离家报警<br />bit25:1为在家报警<br />bit26:1为geo3-out报警<br />bit27:1为geo3-in报警<br />bit28:1为geo4-out报警<br />bit29:1为geo4-in报警<br />bit30:1为weflare报警<br /> |
+| 3-6 | dateTime | uint | unixTime | Alarm Timestamp — the time when the alarm was triggered, in Unix time format (seconds) |
+| 7-n | statusEvent | byte | bits | Alarm Code (1 – 255) — Indicates the type of alarm<br/>event<br/>1: SOS alarm<br/>2: Fall detection alarm<br/>3: Tilt alarm<br/>4: Movement alarm<br/>5: Stationary alarm<br/>6: Leaving home alarm<br/>7: Returning home alarm<br />8: Power-on alarm<br/>9: Power-off alarm<br/>10: Low battery alarm<br/>11: Overspeed alarm<br/>12: Welfare alarm<br/>13: Check-in alarm<br/>14: Check-out alarm<br/>30: Geo-fence 1 exit alarm<br/>31: Geo-fence 1 entry alarm<br/>32: Geo-fence 2 exit alarm<br/>33: Geo-fence 2 entry alarm<br/>34: Geo-fence 3 exit alarm<br />35: Geo-fence 3 entry alarm<br/>36: Geo-fence 4 exit alarm<br/>37: Geo-fence 4 entry alarm<br/>50: SOS end alarm<br/>51: Fall detection end alarm<br/>52: Tilt end alarm<br/>100-199 Custom alarms<br/>200: Simulated alarm |
 
 ---
 
 Note
 
-1. 在同一个时间段可能有多个报警触发，时间会被覆盖，设备端自行处理多个报警item拼接，
-2. 报警时间必须真实有效，如果时间没同步之前，真实时间=同步后的utc-同步前设备RTC的s
-3. 这些报警都可配置是否上传
-4. 长度根据拓展数据变化
+1. If multiple alarms occur within the same time period, multiple items must be concatenated in the report.
+2. The reporting of these alarms can be configured as enabled or disabled.
+3. “Other Record Data Items” may include alarms, location records, call logs, step counts, heart rate, blood oxygen
+   level, body temperature, and similar data.
 
-### (0x11) 设备状态 :id=0x11
+---
+
+### (0x11) Device Status Records::id=0x11
+
+**Function Description**
+
+Describes the current operating state of the device.  Each location data packet or alarm packet must include the following status information:Network status, operating mode, positioning type, battery level, device action, behavior information
 
 
-**功能描述**
 
-设备状态描述设备当前的状态。
-
-
-
-**写请求数据格式**
-
-length+key+value
+**Notification Data Format**
 
 | byte No. | Parameter | Type | Converter | Description                                                                                                                                                                             |
 | --- | --- | --- | --- |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1 | length |  byte |  | key+value                                                                                                                                                                               |
 | 2 | key | byte |  | key                                                                                                                                                                                     |
-| 3-6 | dateTime | uint | unixTime | 打包时间，定位后需要打包的UTC时间戳                                                                                                                                                                     |
-| 7 | mode | byte |  | 设备应用模式，目前1-6 |
-| 8 | batteryLevel | byte |  | 电池电量，范围：0-100                                                                                                                                                                           |
-| 9 | networkType | byte | bits | 网络类型，bit0-6<br />0-无服务<br />2-2G网络<br />3-3G网络<br />4-4G网络<br />10-cat-m网络<br />11-nb<br />30-wifi网络<br />bit7-置1有VOLTE，0为无VOLTE                                                        |
-| 10 | networkSignal | byte |  | 网络信号，范围：0-31,无服务需要配置为0                                                                                                                                                                  |
-| 11-12 | networkBand | ushort | bits | 网络频段，网络类型4G：1,2,3....表示B1、B2、B3....<br />网络类型3G：频点原始值925-2170<br />网络类型2G：频点原始值925-970<br />网络类型0：无服务<br />网络类型cat-M:1,2,3....表示B1、B2、B3....<br />网络类型nb:1,2,3,....表示B1、B2、B3....<br />网络类型wifi：0为2.4G，1为5G<br /> |
-| 12-n | status | array | bits | 状态<br />bit0:1为gps定位<br />bit1:1为gsm定位<br />bit2:1为蓝牙信标定位<br />bit3:1为wifi信标定位<br />bit4:1为homewifi定位<br />bit5:1为homebeacon定位<br />bit6:1为beacon定位<br />bit7:1为充电状态<br />bit8:1为设备动，0为设备静止<br />bit9:1为历史数据，0为实时数据<br />bit10:1为佩戴，否则无 |
+| 3-6 | dateTime | uint | unixTime | Packaging Time — UTC timestamp (in Unix time) generated after positioning                                                                                       |
+| 7 | mode | byte |  | Device Application Mode — Current mode value: 1–6; other values are reserved |
+| 8 | batteryLevel | byte |  | Battery Level — Range: 0–100                                                                                                                                               |
+| 9 | networkType | byte | bits | Network Type — Bits 0 – 6 indicate the<br/>network status:<br/>0 – No service<br />2 – 2G<br/>3 – 3G<br/>4 – 4G<br/>10 – Cat-M<br/>11 – NB-IoT<br/>30 – Wi-Fi<br/>Bit 7: 1 = VoLTE enabled, 0 = No VoLTE |
+| 10 | networkSignal | byte |  | Network Signal Strength — Range: 0–31;<br/>Must be set to 0 when there is no service                                                                              |
+| 11-12 | networkBand | ushort | bits | Network Band / Frequency — Status value<br/>depends on network type:<br/>4G: Band index (1, 2, 3… for B1, B2, B3…)<br />3G: Raw frequency value 925–2170<br/>2G: Raw frequency value 925–970<br/>0: No service<br/>Cat-M: Band index (1, 2, 3… for B1, B2, B3…)<br/>NB-IoT: Band index (1, 2, 3… for B1, B2, B3…)<br/>Wi-Fi: 0 = 2.4 GHz, 1 = 5 GHz |
+| 12-n | status | array | bits | Status Flags — Bit-mapped status values:<br/>Bit 1: 1 = Charging<br/>Bit 2: 1 = Device in motion, 0 = Stationary<br/>Bit 3: 1 = Historical data, 0 = Real-time data<br/>Bit 4: 1 = Worn, 0 = Not worn |
 
 ---
 
 Note:
 
-1. 网络类型：VOLTE的是值设备查询对应的apn对应的服务id，查询到服务id有获取到注册ip地址
-2. simcom除了2G模块的网络信号是RSRP并不是CSQ，其它模块需要问原厂
-3. ​在家和离家状态由服务前端判断homebeacon和homewifi、蓝牙定位在家状态
-
-
-
-
-
-
-### (0x20) GPS定位记录 :id=0x20
-
-
-**功能描述**
-
-记录GPS工作过程中所获取到的位置信息。
-
-
-
-**写请求数据格式**
-
-length+key+value
-
-| byte No. | Parameter | Type | Converter | Description |
-| --- | --- | --- | --- | --- |
-| 1 | length |  byte |  | key+value |
-| 2 | key | byte |  | key |
-| 3-6 | lat | float | loc | latitude, type: float，GPS经度 |
-| 7-10 | lng | float | loc | longitude, type float，GPS纬度 |
-| 11-12 | speed | ushort |  | GPS速度，单位: km/h |
-| 13-14 | direction | ushort |  | 设备移动方向, 单位:度, 范围：[0, 359] <br>以`方向北`为起点0 |
-| 15-16 | altitude | short |  | 海拔高度, 单位: 米,有负海拔 |
-| 17-18 | hdop | ushort |  | 定位精度因子，放大了十倍，服务器缩小十倍显示小数点 |
-| 19-22 | mileage | uint | | GPS更新上个定位点和本次点距离超过100m进行累加，单位m |
-| 23 | number of satellites | byte | | GPS可见星数 |
-
-Note:
-1. hdop水平精度因子，从`GPGGA`中获取
-2. mileage里程，初始化里程在`配置命令`中，每次更新计算新的移动距离进行累加
-3. ​
+1. `Network Type`: For VoLTE, the device queries the service ID corresponding to the APN. If a service ID is found, the device then obtains the registered IP address.
+2. `Network Signal`: For SIMCom modules, except for 2G modules, the network signal is measured in RSRP rather
+   than CSQ. For other modules, please consult the original manufacturer.
+3. `Other Record Data Items`: May include alarms, location records, call logs, step counts, heart rate, blood oxygen
+   level, body temperature, and similar data.
 
 ---
 
-### (0x21) 基站定位记录 :id=0x21
 
+### (0x20) GPS Positioning Record :id=0x20
 
-**功能描述**
+**Function Description**
 
-GSM模组通过获取当前注册所在基站的位置信息，提供给服务器来获取设备所在的区域位置范围。
+Contains location data acquired during GPS operation.
 
-一般服务器要去访问高德、百度、谷歌第三方服务器才能获取到定位位置
-
-**写请求数据格式**
+**Notification Data Format**
 
 | byte No. | Parameter | Type | Converter | Description |
 | --- | --- | --- | --- | --- |
 | 1 | length |  byte |  | key+value |
 | 2 | key | byte |  | key |
-| 3-4 | mcc | ushort |  | Mobile Country Code,移动国家代码 |
-| 5-6 | mnc | ushort |  | 移动网络号码 |
+| 3-6 | lat | float | loc | latitude, type: float |
+| 7-10 | lng | float | loc | longitude, type float |
+| 11-12 | speed | ushort |  | GPS Speed，单位: km/h |
+| 13-14 | direction | ushort |  | Movement Direction, in degrees, range: [0–359], where<br/>0° = due north |
+| 15-16 | altitude | short |  | Altitude, in meters, may be negative |
+| 17-18 | hdop | ushort |  | HDOP (Horizontal Dilution of Precision) — value is multiplied by 10 in transmission; server divides by 10 for display |
+| 19-22 | mileage | uint | | Accumulated when the distance between the last GPS point and the current point exceeds 100 m, unit: meters |
+| 23 | number of satellites | byte | | Number of Visible Satellites |
+
+Note:
+1. `HDOP (Horizontal Dilution of Precision)`: Obtained from the GPGGA sentence.
+2. `Mileage`: The initial mileage is defined in the configuration command. Each time an update occurs, the newly
+   calculated movement distance is accumulated.
+
+---
+
+### (0x21) Base Station Positioning Record: id=0x21
+
+**Function Description**
+
+The cellular module obtains information from the currently registered cell tower(s) and provides it to the server to determine the approximate location range of the device. Multiple cell tower records are supported.
+
+In most cases, the server needs to query third-party services such as Amap (Gaode), Baidu, or Google in order to
+resolve the positioning information.
+
+**Notification Data Format**
+
+| byte No. | Parameter | Type | Converter | Description |
+| --- | --- | --- | --- | --- |
+| 1 | length |  byte |  | key+value |
+| 2 | key | byte |  | key |
+| 3-4 | mcc | ushort |  | Mobile Country Code |
+| 5-6 | mnc | ushort |  | Mobile Network Code (MNC)                                    |
 | 7 | rxl | sbyte |  | RX level value for base station selection |
-| 8-9 | lac | ushort |  | LAC（Location Area Code）是一个位置区域码 |
+| 8-9 | lac | ushort |  | LAC（Location Area Code） LAC is a location<br/>area code used to identify a specific location<br/>area within the mobile network. |
 | 10-13 | cellId | uint |  | Service-cell Identify |
 
 ---
 
 Note:
 
-1. 对于 **3G基站和4G基站**，其LAC取值有所不同。对于3G基站，其LAC值应大于等于40960，而对于4G基站，其LAC值则小于40960且其CID值大于65535
-2. 设备可以携带其他定位key+基站定位key,由服务器做第三方纠偏动作
-3. ​
+1. LAC Values for 3G and 4G Base Stations: For 3G base stations, the LAC value must be greater than or equal to 40960. For 4G base stations, the LAC value must be less than 40960, and the CID value must be greater than 65535.
+2. Hybrid Positioning Keys: The device can carry both other positioning keys and the base station positioning key, allowing the server to perform
+   third-party correction (offset adjustment).
+3. Multiple Base Station Scanning:  The device should scan multiple nearby base stations to avoid risks caused by an incomplete or inaccurate single
+   base station database, or cases where parsing fails.
 
-### (0x22)蓝牙定位记录 :id=0x22
+---
 
-**功能描述**
+### (0x22)Bluetooth Positioning Record :id=0x22
 
-蓝牙定位，指设备走连接蓝牙后询问带定位信息且走ab协议的设备，该定位信息由客户通过手机app或者设备通过协议配置好定位信息，定位信息准确度由配置者确定，通过连接配件获取到的位置信息和描述符。
+**Function Description**
 
-**写请求数据格式**
+Bluetooth Positioning, Refers to the scenario where the device connects via Bluetooth to another device that provides location information using the AB protocol. The location information is configured either by the customer through the mobile app or by the device through the protocol. The accuracy of the location information is determined by the party who performs the configuration. The device obtains both the location information and its descriptors through the connected accessory.
 
-length+key+value
+**Notification Data Format**
 
 | byte No. | Parameter   | Type | Converter | Description                        |
 | -------- | ----------- | ---- | --------- | ---------------------------------- |
 | 1        | length      | byte |           | key+value                          |
 | 2        | key         | byte |           | key                                |
-| 3-8      | mac         | MAC  | leMac     | 信标的mac地址                      |
-| 9-12     | lat         | float | loc       | 设备里信标的经度float，占用4个字节 |
-| 13-16    | lng         | float | loc       | 设备里信标的纬度float，占用4个字节 |
-| 17-n     | description | String | utf8      | 最大字节为32字符,结束符'\0'        |
+| 3-8      | mac         | MAC  | leMac     | Ble beacon MAC Address                                       |
+| 9-12     | lat         | float | loc       | Beacon Longitude (float) — 4 bytes |
+| 13-16    | lng         | float | loc       | Beacon Latitude (float) — 4 bytes |
+| 17-n     | description | String | utf8      | Maximum length: 32 characters, ending with '\0' (null terminator) |
 
 Note:
 
-1. 设备做从机，目前只能一对一连接
-2. 可以作为在家定位基准
+1. Device as Slave Mode: The device operates in slave mode and currently supports only one-to-one connections.
+2. The BLE positioning accuracy is fixed by the server at 5 meters. Since the device functions as a slave, RSSI is not required to be included. The connection does not necessarily need to be continuously broadcast.
+
+---
 
 
-### (0x23)homebeacon定位记录 :id=0x23
+### (0x23)homebeacon positioning record :id=0x23
 
-**功能描述**
+**Function Description**
 
-homebeacon信标定位指蓝牙信标把对应的mac信息，位置，描述等信息写到设备数据库。通过定位扫描周变广播信标解析私有协议匹配到mac地址认为是homebeacon
+Home Beacon Positioning, Refers to the process where a Bluetooth beacon writes its corresponding MAC address, location, description, and related information into the device database. Through positioning, the device scans surrounding broadcast beacons and parses them using a private protocol. The device then packages key information and uploads it to the server.
 
-**写请求数据格式**
+**Notification Data Format**
+
+| byte No. | Parameter    | Type   | Converter   | Description                                                  |
+| -------- | ------------ | ------ | ----------- | ------------------------------------------------------------ |
+| 1        | length       | byte   |             | key+value                                                    |
+| 2        | key          | byte   |             |                                                              |
+| 3-8      | mac          | MAC    | leMac       | Beacon MAC Address                                           |
+| 9        | rssi         | sbyte  |             | Bluetooth Beacon RSSI                                        |
+| 10       | index        | byte   |             | Beacon Offset — Range: 1–20                                  |
+| 11-12    | type         | ushort | bits        | Beacon Data Flags (bit-mapped):<br />Bit 0: 1 = Battery available, 0 = No battery info<br/>Bit 1: 1 = Temperature available, 0 = No temperature info<br/>Bit 2: 1 = Latitude/Longitude available, 0 = No location info<br/>Bit 3: 1 = Descriptor available, 0 = No descriptor<br/>Bit 4: 1 = Beacon name available, 0 = No beacon name<br/>Bits 5–15: Reserved |
+| 13       | batteryLevel | byte   |             | range: 0-100                                                 |
+| 14-15    | temperature  | short  | temperature | unit: ℃/10                                                   |
+| 16-19    | lat          | float  | loc         | Beacon Latitude                                              |
+| 20-23    | lng          | float  | loc         | Beacon longitude                                             |
+| #string  | description  | String | utf8        |                                                              |
+
+---
+
+### (0x24)beacon positioning record :id=0x24
+
+**Function Description**
+
+Beacon positioning refers to the device scanning and locating nearby Bluetooth beacons. The device integrates a proprietary broadcasting protocol to parse broadcast data corresponding to power, temperature, latitude and longitude, descriptors, and other data. Data that is not proprietary will not be parsed. Other standard protocols or proprietary protocols can be added.
+
+**Notification Data Format**
 
 length+key+value
 
@@ -304,396 +313,286 @@ length+key+value
 | -------- | ------------ | ------ | ----------- | ------------------------------------------------------------ |
 | 1        | length       | byte   |             | key+value                                                    |
 | 2        | key          | byte   |             |                                                              |
-| 3-8      | mac          | MAC    | leMac       | 信标的mac地址                                                |
-| 9        | rssi         | sbyte  |             | 蓝牙信标的RSSI                                               |
-| 10       | index        | byte   |             | 信标的偏移量，范围1-20                                       |
-| 11-12    | type         | ushort | bits        | bit0: 置1有温度，否则无<br />bit1:置1有电量，否则无<br />Bit2:置1有经纬度，否则无<br />bit3:置1有描述符，否则无<br />bit4-15预留 |
-| 13       | batteryLevel | byte   |             | 范围0-100，占一个字节                                        |
-| 14-15    | temperature  | short  | temperature | 摄氏度*10，设备上传放大十倍，服务器显示需要缩小，占两个字节  |
-| 16-19    | lat          | float  | loc         | 设备里信标的经度float，占用4个字节                           |
-| 20-23    | lng          | float  | loc         | 设备里信标的纬度float，占用4个字节                           |
-| 24-n     | description  | String | utf8        | 最大字节为32字符,结束符'\0'                                  |
-|          |              |        |             |                                                              |
-|          |              |        |             |                                                              |
+| 3-8      | mac          | MAC    | leMac       | beacon MAC address                                           |
+| 9        | rssi         | sbyte  |             | RSSI of beacon                                               |
+| 10       | index        | byte   |             | index, range: 1-20                                           |
+| 11-12    | type         | ushort | bits        | bit0: =1 with temperature info<br />bit1: =1 with battery info of  beacon<br />Bit2: =1, with location info<br />bit3: =1, with description<br />bit4-15, reserved |
+| 13       | batteryLevel | byte   |             | range: 0-100                                                 |
+| 14-15    | temperature  | short  | temperature | unit: ℃/10                                                   |
+| 16-19    | lat          | float  | loc         | latitude                                                     |
+| 20-23    | lng          | float  | loc         | longitude                                                    |
+| 24-n     | description  | String | utf8        |                                                              |
 
 Note:
 
-1. type的类型是一个可组合且会改变后面的顺序
-2. 多个beacon每个都带有key+len+value
-3. 可以作为在家定位基准
+1. This positioning key can be customized for standard beacons or Eview private data beacons.
 
-### (0x24)beacon定位记录 :id=0x24
+---
 
-**功能描述**
+### (0x25)Home Wi-Fi Location Record :id=0x25
 
-beacon信标定位指设备需要定位扫描周边广播蓝牙信标，设备集成了私有广播协议进行对广播数据解析对应电量，温度，经纬度，描述符等数据。没有私有数据不进行解析。可拓展其他标准协议或者其他私有协议
+**Function Description**
 
-**写请求数据格式**
+Home Wi-Fi beacon-based positioning refers to storing nearby beacon (Wi-Fi) information on the device. During the
+positioning process, the device scans for surrounding beacons. If the scanned beacons match the locally stored database, the location is recognized as a "home Wi-Fi" environment.
+If a beacon lacks coordinate data (latitude and longitude) and textual location descriptors, the server must access external location services (such as Amap, Baidu, or Google Maps) to resolve the beacon’s actual location.
 
-length+key+value
-
-| byte No. | Parameter    | Type   | Converter   | Description                                                  |
-| -------- | ------------ | ------ | ----------- | ------------------------------------------------------------ |
-| 1        | length       | byte   |             | key+value                                                    |
-| 2        | key          | byte   |             |                                                              |
-| 3-8      | mac          | MAC    | leMac       | 信标的mac地址                                                |
-| 9        | rssi         | sbyte  |             | 蓝牙信标的RSSI                                               |
-| 10       | index        | byte   |             | 信标的偏移量，范围1-20                                       |
-| 11-12    | type         | ushort | bits        | bit0: 置1有温度，否则无<br />bit1:置1有电量，否则无<br />Bit2:置1有经纬度，否则无<br />bit3:置1有描述符，否则无<br />bit4-15预留 |
-| 13       | batteryLevel | byte   |             | 范围0-100，占一个字节                                        |
-| 14-15    | temperature  | short  | temperature | 摄氏度*10，设备上传放大十倍，服务器显示需要缩小，占两个字节  |
-| 16-19    | lat          | float  | loc         | 设备里信标的经度float，占用4个字节                           |
-| 20-23    | lng          | float  | loc         | 设备里信标的纬度float，占用4个字节                           |
-| 24-n     | description  | String | utf8        | 最大字节为32字符,结束符'\0'                                  |
-|          |              |        |             |                                                              |
-|          |              |        |             |                                                              |
-
-Note:
-
-1. 该定位key可定制标准beacon或者eview私有数据beacon
-2. 多个beacon每个都带有key+len+value
-3. 如有定制beacon需要其他定位拼接上传，由服务器做其他数据处理
-
-### (0x25)homewifi定位记录 :id=0x25
-
-**功能描述**
-
-homewifi信标定位是指将周围信标信息保存在设备。在需要定位过程中，设备扫描附近的信标, 如果扫描附近的信标后适配上本地数据库视为homewifi。
-
-对于没有经纬度和描述符的信标，一般服务器要去访问高德、百度、谷歌第三方服务器才能获取到定位位置
-
-**写请求数据格式**
+**Notification Data Format**
 
 | byte No. | Parameter   | Type   | Converter | Description                                                  |
 | -------- | ----------- | ------ | --------- | ------------------------------------------------------------ |
 | 1        | length      | byte   |           | key+value                                                    |
 | 2        | key         | byte   |           |                                                              |
-| 3-8      | mac         | MAC    | leMac     | wifi的mac地址                                                |
-| 9        | rssi        | sbyte  |           | wifi的信号值，signed char 有符号数据类型-127-128             |
-| 10       | index       | byte   |           | index 1～15                                                  |
-| 11       | type        | byte   | bits      | bit0:1有经纬度，否则无<br />bit1:1有描述符，否则无<br />Bit2:1有wifi的SSID，否则无<br />Bit3-7:预留 |
-| 12-15    | lat         | float  | loc       | 设备里信标的经度float                                        |
-| 16-19    | lng         | float  | loc       | 设备里信标的纬度float                                        |
-| 20-n     | description | String | utf8      | m最大字节为64字符,结束填'\0'                                 |
-| n+21+m   | ssid        | String | utf8      | n最大字节为64字符,结束填'\0'                                 |
+| 3-8      | mac         | MAC    | leMac     | MAC address of theWiFi                                       |
+| 9        | rssi        | sbyte  |           | WiFi signal strength                                         |
+| 10       | index       | byte   |           | index:: 1～15                                                |
+| 11       | type        | byte   | bits      | Bit 0: 1 = latitude/longitude available, 0 =<br/>no latitude/ longitude available<br/>Bit 1: 1 = description available, 0 = No<br/>description<br/>Bit 2: 1 = SSID available, 0 = No SSID<br /> Bit 3-7: Reserved |
+| 12-15    | lat         | float  | loc       | Beacon latitude in device, controlled by bit0                |
+| 16-19    | lng         | float  | loc       | Beacon longitude in device, controlled by bit0               |
+| 20-n     | description | String | utf8      | size:[0, 64]                                                 |
+| n+21+m   | ssid        | String | utf8      | size:[0, 64]                                                 |
 
 ------
 
 Note:
 
-1. 如无经纬度，需要由服务器获取第三方服务获取
-2. 需要上传多个wifi拼包多组len+key+value
-3. 后面有协议拓展加入需要按照顺序，拓展需要在type标明拓展协议类型
-4. 设备匹配原则有mac优先级，其次是ssid
-5. 可以作为在家定位基准
+1. All fields, except latitude/longitude and description (which are device configuration parameters), are reported via broadcasts from the slave device. Latitude and longitude, if present, are assumed to have maximum precision (~5meters). If latitude and longitude are not included, the server may optionally access third-party location services to resolve the coordinates.
+2. Multiple Home WiFi items may be uploaded in one or more concatenated packets, each following the `len + key + value` format.
+3. Bits in the type field are optional flags; when all optional bits are set, the items should follow the protocol-defined order, and for composite items, the packet order of sub-items must be matched manually.
+4. The device matching principle is mac priority, followed by `ssid`.
+5. Can be used as a positioning reference at home
 
-### (0x26)wifi定位记录 :id=0x26
+---
 
-**功能描述**
+### (0x26)WiFi location records :id=0x26
 
-wifi信标定位记录是在设备需要定位，设备扫描附近的wifi信标信息上传到服务器。
+**Function Description**
 
-由服务器要去访问高德、百度、谷歌第三方服务器才能获取到定位位置
+WiFi beacon location records are generated when the device requires positioning. The device scans nearby WiFi  beacons and uploads the data to the server. To resolve the actual location, the server may access third-party location services such as Amap, Baidu, or Google Maps.
 
-
-**写请求数据格式**
+**Notification Data Format**
 
 | byte No. | Parameter   | Type   | Converter | Description                                                  |
 | -------- | ----------- | ------ | --------- | ------------------------------------------------------------ |
 | 1        | length      | byte   |  | key+value                                                    |
 | 2        | key         | byte   |  |                                                              |
-| 3-8      | mac         | MAC    | leMac     | wifi的mac地址                                                |
-| 9        | rssi        | sbyte  |  | wifi的信号值，signed char 有符号数据类型-127-128             |
+| 3-8      | mac         | MAC    | leMac     | MAC address of theWiFi                          |
+| 9        | rssi        | sbyte  |  | WiFi signal strength |
 | 10       | index       | byte   |  | index 1～15                                                  |
 | 11 | type | byte | bits | bit0:1有ssid,否则无<br />bit1-7：预留 |
 | 12+n | ssid        | String | utf8      | n最大字节为64字符,结束填'\0'                                 |
 
 ---
 
-Note:
-
-1. 需要上传多个wifi拼包多组len+key+value
-
-2. 后面有协议拓展加入需要按照顺序，拓展需要在type标明拓展协议类型
+### (0x40)  Call Record :id=0x40
 
 
+**Function Description**
 
+Communication records include call-related information from the cellular module, such as:
+* Missed incoming calls
+* Outgoing calls not answered
+* Completed calls
 
-
-
-
-
-
-### (0x40) 通话记录 :id=0x40
-
-
-**功能描述**
-
-通讯记录包含GSM通讯模组使用过程中的：
-* 未接来电
-* 拨号未接
-* 通话
-
-
-
-**写请求数据格式**
+**Notification Data Format**
 
 | byte No. | Parameter   | Type | Converter | Description                                                                                                                              |
 |----------|-------------|------| --------- |------------------------------------------------------------------------------------------------------------------------------------------|
 | 1        | length      | byte |  |                                                                                                                                          |
 | 2        | key         | byte |  |                                                                                                                                          |
-| 3-6      | dateTime    | uint | unixTime  | 拔打时间/来电时间                                                                                                                                |
-| 7        | callSource  | byte |  | 0- 来电, <br />1- side key拨号，<br />2-跌倒拨号，<br />3-倾斜拨号，<br />4-动报警拨号，<br />5-不动报警拨号，<br />6-wefare报警拨号，<br />7-sos报警拨号，<br />8-短信拨号，<br />9-shell测试拨号，<br />10-服务器拨号，11-蓝牙拨号（短信发起拨打/或者复位器） |
-| 8        | callStatus  | byte |  | 状态: 0- 接听(拨打);1-自动接听(来电)；<br />2-手动接听(来电) 3-未接听; 4-播不通;<br />255-未知错误                                                                    |
-| 13-16   | duration    | uint |  | 时长, 单位:秒;<br /> 未接听时为响铃时长; <br />已接听表示通话时长                                                                                               |
-| 17-n    | phoneNumber | String | utf8      | 对方号码，结束为\n                                                                                                                               |
+| 3-6      | dateTime    | uint | unixTime  | Call or incoming time                                                                                                           |
+| 7        | callSource  | byte |  | 0 - Incoming call<br/>1 - Side button dial<br />2 - Fall dial<br/>3 - Tilt dial<br/>4 - Motion alarm dial<br/>5 - No-motion alarm dial<br/>6 - Welfare alarm dial<br/>7 - SOS alarm dial<br/>8 - SMS dial<br/>9 - Shell test dial<br/>10 - Server dial<br/>11 - Bluetooth dial (initiated by SMS or resetter) |
+| 8        | callStatus  | byte |  | Status:<br/>0 - Answered (outgoing)<br />1 - Auto answered (incoming)<br/>2 - Manual answered (incoming)<br/>3 - Missed<br/>4 - Cannot connect<br/>255 - Unknown error |
+| 9 | hangupSource | byte | | Status:<br/>0 - Physical button hangup (manual)<br/>1 - Screen trigger hangup (manual)<br/>2 - Auto hangup (device)<br/>3 - Passive hangup (remote or network)<br/>255 - Unknown hangup (call immediately disconnected) |
+| 10-13 | duration    | uint |  | Duration in seconds; <br />for missed calls, indicates ringing duration;<br/>for answered calls, indicates talk duration |
+| 14-n    | phoneNumber | String | utf8      | Counterparty number                                                                                           |
 
 
 
 
-### (0x50)每天步数记录 :id=0x50
+### (0x50)Hourly Step Count Record :id=0x50
 
 
-**功能描述**
+**Function Description**
 
-记录设备当天使用过程中产生的步数统计。
+The accumulated step count generated per hour during device usage.
 
-
-
-**写请求数据格式**
+**Notification Data Format**
 
 | byte No. | Parameter | Type | Converter | Description         |
 | -------- | --------- | ---- | --------- | ------------------- |
 | 1        | length    | byte |  | key+value           |
 | 2        | key       | byte |  |                     |
-| 3-6      | dateTime  | uint | unixTime  | 步数对应的日期, UTC |
-| 7-10     | steps     | uint |  | 当天的步数累加和    |
+| 3-6      | dateTime  | uint | unixTime  | Date and hour for step count, UTC |
+| 7-10     | steps     | uint |  | Step count |
 
-Note:
+---
 
-1. 跨天需要清零
-
-### (0x51)每小时步数记录 :id=0x51
+### (0x51)Hourly Step Count Record: :id=0x51
 
 
-**功能描述**
+**Function Description**
 
-记录设备使用过程中，每小时产生的步数累加。
+The accumulated step count generated per hour during device usage.
 
-
-
-**写请求数据格式**
+**Notification Data Format**
 
 | byte No. | Parameter | Type | Converter | Description     |
 |----------|-----------|------| --------- |-----------------|
 | 1        | length    | byte |  | key+value |
 | 2        | key       | byte |  |                 |
-| 3-6      | dateTime | uint | unixTime  | 步数对应的日期、小时, UTC |
-| 7-10     | steps     | uint |  | 步数              |
+| 3-6      | dateTime | uint | unixTime  | Date and hour for step count, UTC |
+| 7-10     | steps     | uint |  | Step count    |
 
 ---
 
 
-### (0x52)每分钟步数记录 :id=0x52
+### (0x52)Per-Minute Step Count Record: :id=0x52
 
 
-**功能描述**
+**Function Description**
 
-记录设备使用过程中，每分钟产生的步数累加。
+The accumulated step count generated per minute during device usage.
 
-
-
-**写请求数据格式**
+**Notification Data Format**
 
 | byte No. | Parameter    | Type | Converter | Description        |
 |----------|--------------|------| --------- |--------------------|
 | 1        | length       | byte |  | key+value |
 | 2        | key          | byte |  |                    |
-| 3-6      | dateTime    | uint | unixTime  | 步数对应的日期、小时、分钟, UTC |
-| 7        | minute0Steps | byte |  | 开始时间第0分钟内产生的步数     |
-| 9        | minute1Steps | byte |  | 开始时间第1分钟内产生的步数     |
-| 9        | minute2Steps | byte |  | 开始时间第2分钟内产生的步数     |
+| 3-6      | dateTime    | uint | unixTime  | Date, hour, and minute for the step data, UTC |
+| 7        | minute0Steps | byte |  | Step count during the 0th minute from start time |
+| 9        | minute1Steps | byte |  | Step count during the 1st minute from start time |
+| 9        | minute2Steps | byte |  | Step count during the 2nd minute from start time |
 | ...      | ...          | ...  | ...      | ....               |
-| n        | minuteNSteps | byte |  | 开始时间第n-1分钟内 产生的步数  |
+| n        | minuteNSteps | byte |  | Step count during the (n-1)th minute from start time |
 
 Note:
-1. 每分钟记录步数，使用的是连续时间记录。
-2. 当连接5分钟没有步数产生时，则自动存储为1条记录。
-3. 最小连续记录1分钟。开始时间内无数据产生的自动移除。
-4. 最大连续记录30分钟步数，当满30分钟后，自动存储为1条记录。
-5. 人的步频一般为2-4，单字节应该能满足1分钟内步数记录。
+1. Step counts are recorded per minute using continuous time logging.
+2. If no steps are detected for 5 consecutive minutes, a record is automatically stored as one item.
+3. The minimum continuous record duration is 1 minute. Any intervals with no steps during the start time are
+   automatically discarded.
+4. The maximum continuous record duration is 30 minutes; once 30 minutes are reached, the record is automatically stored as one item.
+5. Typical human step frequency is 2–4 steps per second; a single byte is sufficient to store steps per minute.
 
 ---
 
-### (0x53) 活跃度记录 :id=0x53
+### (0x53) Activity Record :id=0x53
 
-**功能描述**
+**Function Description**
 
-指设备在一定时间内累计设备的加速度累计波动，由应用获取sensor的三轴加速度计算加速度 - 0.98(重力加速度)
+Refers to the accumulated acceleration fluctuation of the device over a certain period, calculated by the application
+using the sensor’s three-axis acceleration values: acceleration minus 0.98 m/s² (gravity).
 
-**写请求数据格式**
+**Notification Data Format**
 
-| byte No. | Parameter | Type | Converter | Description |
-| -------- | --------- | ---- | --------- | ----------- |
-| 1        | length    | byte |           | key+value   |
-| 2        | key       | byte |           |             |
-| 3-6      | dateTime  | uint | unixTime  | utc的时间戳 |
-| 7-10     | activity  | uint |           |             |
+| byte No. | Parameter | Type | Converter | Description   |
+| -------- | --------- | ---- | --------- | ------------- |
+| 1        | length    | byte |           | key+value     |
+| 2        | key       | byte |           |               |
+| 3-6      | dateTime  | uint | unixTime  | UTC timestamp |
+| 7-10     | activity  | uint |           |               |
 
-Note:
+---
 
-1. 不同的满量程还是不一样
-2. 设备五分钟记录一次
+### (0x54)Inactivity Record :id=0x54
 
-### (0x54)静止记录 :id=0x54
+**Function Description**
 
-
-**功能描述**
-
-记录设备使用过程中静止的时长。
+Record the length of time the device remains inactive while in use.
 
 
 
-**写请求数据格式**
+**Notification Data Format** 
 
 | byte No. | Parameter   | Type | Converter | Description         |
 | -------- | ----------- | ---- | --------- | ------------------- |
 | 1        | length      | byte |  | key+value           |
 | 2        | key         | byte |  |                     |
-| 3-6      | dateTime    | uint | unixTime  | 静止记录时间戳, UTC |
-| 7-10     | idleMinutes | uint |  | 连续静止的分钟数    |
+| 3-6      | dateTime    | uint | unixTime  | Timestamp of the idle record, UTC |
+| 7-10     | idleMinutes | uint |  | Number of consecutive idle minutes |
 
 ---
 
 
-### (0x60)心率测量记录 :id=0x60
+### (0x60) Heart Rate Measurement Record :id=0x60
+
+**Function Description**
+
+Record the data obtained during heart rate measurement with the device.
 
 
-**功能描述**
 
-记录设备使用过程中，心率测量工作期间测量到的数据。
-
-
-
-**写请求数据格式**
+**Notification Data Format**
 
 | byte No. | Parameter       | Type | Converter | Description                                                  |
 | -------- | --------------- | ---- | --------- | ------------------------------------------------------------ |
 | 1        | length          | byte |  | key+value                                                    |
 | 2        | key             | byte |  |                                                              |
-| 3-6      | dateTime        | uint | unixTime   | 时间戳                                                       |
-| 7        | measurementType | byte |  | 类型 <br>0-定时测量 <br>1-手动测量(屏幕)<br>2-远端控制测量, USB/BLE/短信/电话DTMF/服务器 |
-| 8        | average         | byte |  | 心率值平均值                                                 |
-| 9        | min             | byte |  | 心率最小值                                                   |
-| 10       | max             | byte |  | 心率最大值                                                   |
-| 11       | signalQuality   | byte |  | 本次测量的信号质量                                           |
+| 3-6      | dateTime        | uint | unixTime   | timestamp                                                    |
+| 7        | measurementType | byte |  | Measurement type<br/>0 – Scheduled measurement<br/>1 – Manual measurement (via device screen)<br/>2 – Remote-controlled measurement (triggered<br/>via USB, BLE, SMS, DTMF phone input, or server) |
+| 8        | average         | byte |  | Average heart rate                               |
+| 9        | min             | byte |  | Minimum heart rate                                 |
+| 10       | max             | byte |  | Maximum heart rate                                 |
+| 11       | signalQuality   | byte |  | Signal quality                             |
 
 ---
 
 
-### (0x61) 血氧测量记录 :id=0x61
+### (0x61) Blood Oxygen Measurement Record :id=0x61
 
 
-**功能描述**
+**Function Description**
 
-记录设备使用过程中，血氧测量工作期间测量到的数据。
+Record the data obtained during blood oxygen measurement with the device.
 
-
-
-**写请求数据格式**
+**Notification Data Format**
 
 | byte No. | Parameter       | Type | Converter | Description                                                  |
 | -------- | --------------- | ---- | --------- | ------------------------------------------------------------ |
 | 1        | length          | byte |  | key+value                                                    |
 | 2        | key             | byte |  |                                                              |
-| 3-6      | dateTime        | uint | unixTime   | 时间戳                                                       |
-| 7        | measurementType | byte |  | 类型 <br>0-定时测量 <br>1-手动测量(屏幕)<br>2-远端控制测量, USB/BLE/短信/电话DTMF/服务器 |
-| 8        | average         | byte |  | 血氧平均值                                                   |
-| 9        | min             | byte |  | 血氧最小值                                                   |
-| 10       | max             | byte |  | 血氧最大值                                                   |
-| 11       | signalQuality   | byte |  | 本次测量的信号质量                                           |
+| 3-6      | dateTime        | uint | unixTime   | Timestamp                                              |
+| 7        | measurementType | byte |  | Measurement type<br/>0 – Scheduled measurement<br/>1 – Manual (via screen)<br/>2 – Remote-controlled (via USB, BLE, SMS,<br/>DTMF, or server) |
+| 8        | average         | byte |  | Average blood oxygen (SpO₂ )                       |
+| 9        | min             | byte |  | Minimum blood oxygen (SpO₂ )                       |
+| 10       | max             | byte |  | Maximum blood oxygen (SpO₂ )                       |
+| 11       | signalQuality   | byte |  | Signal quality of this measurement        |
 
 ---
 
-### (0x62)温度测量记录 :id=0x62
+### (0x62)Temperature Measurement Record::id=0x62
 
 
-**功能描述**
+**Function Description**
 
-记录设备使用过程中，温度测量工作期间测量到的数据。
+Record the data obtained during temperature measurement with the device.
 
-
-
-**写请求数据格式**
+**Notification Data Format**
 
 | byte No. | Parameter       | Type | Converter | Description                                                  |
 | -------- | --------------- | ---- | --------- | ------------------------------------------------------------ |
 | 1        | length          | byte |  | key+value                                                    |
 | 2        | key             | byte |  |                                                              |
-| 3-6      | dateTime        | uint | unixTime   | 时间戳                                                       |
-| 7        | measurementType | byte |  | 类型 <br>0-测量失败<br>1-定时测量 <br>2-手动测量(屏幕)<br>3-远端控制测量, USB/BLE/短信/电话DTMF/服务器 |
-| 8-11     | average         | float | temperature | 温度平均值, float                                            |
-| 12-15    | min             | float | temperature | 温度最小值, float                                            |
-| 16-19    | max             | float | temperature | 温度最大值, float                                            |
+| 3-6      | dateTime        | uint | unixTime   | Timestamp                                              |
+| 7        | measurementType | byte |  | Measurement type:<br/>0 – Measurement failed<br/>1 – Scheduled measurement<br/>2 – Manual (via screen)<br/>3 – Remote-controlled (via USB, BLE, SMS, DTMF, or server) |
+| 8-11     | average         | float | temperature | float Average temperature value (°C), float format |
+| 12-15    | min             | float | temperature | float Minimum temperature value (°C), float format |
+| 16-19    | max             | float | temperature | float Maximum temperature value (°C), float format |
 
 ---
 
-### (0xC0)设备复位原因 :id=0xC0
+### (0xC0) Device Reset Reason :id=0xC0
 
-**功能描述**
+**Function Description**
 
-由设备异常导致hardfault记录的程序栈回溯信息保存在flash里。开机后由开发人员主动读取。由设备拿到信息定位复位原因
+When a device experiences an exception causing a `hardfault`, the program stack trace information is stored in flash memory. After the device is powered on, the information can be actively read by developers. This data is used to identify the cause of the reset or fault.
 
-
-
-
-
-**写请求数据格式**
+**Notification Data Format**
 
 | byte No. | Parameter | Type | Converter | Description |
 | --- | --- | --- | --- | --- |
 | 1 | length |  byte |  | key+value |
 | 2 | key | byte |  | key |
 | 3-n | string | array | utf-8 | 以结束符'\0' |
-
-Note:
-
-1. 复位原因记录信息可能超过255个字节，目前只能在头里计算内容
-2. 设备不主动发送复位原因
-
-### ()
-
-
-**功能描述**
-
-
-
-
-
-**写请求数据格式**
-
-| byte No. | Parameter | Type | Converter | Description |
-| --- | --- | --- | --- | --- |
-| 1 | length |  byte |  | length |
-| 2 | key | byte |  | key |
-| 3-n |  |  |  |  |
-
-### ()
-
-
-**功能描述**
-
-
-
-
-
-**写请求数据格式**
-
-| byte No. | Parameter | Type | Converter | Description |
-| --- | --- | --- | --- | --- |
-| 1 | length |  byte |  | length |
-| 2 | key | byte |  | key |
-| 3-n |  |  |  |  |
-
-
 

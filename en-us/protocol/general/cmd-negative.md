@@ -1,134 +1,140 @@
-# 负响应 Negative Response(0x7F)
+# Negative Response(0x7F)
 
-## 命令说明
+## Command Instruction
 
-`负响应`-negative response，否定回答。即设备出于一系列原因，无法正确执行命令时需要返回的一种回复，通知 `主机发送的命令`未成功执行的原因。
+Negative response – a denial reply. This is a type of response that the device must return when, for various reasons,
+it cannot correctly execute a command, in order to inform the host of the reason why the command was not
+successfully executed.
 
-在[📄响应篇](response.md)中已经说明，正响应有固定的回复方式，请务必注意。
+As explained [📄Response](response.md), positive responses have a fixed reply format, so please pay close attention.
 
-## key列表
+---
 
-| Value(HEX) | Parameter               | 功能描述               | 可写 | 可读 | 通知 |
+## key list
+
+| Value(HEX) | Parameter               | Function Description | Write | Read | Notification |
 | ---------- | ----------------------- | ---------------------- | ---- | ---- | ---- |
 | 0x00       | success                 | Success                | ❌   | ❌   | ❌   |
-| 0x01       | lengthError             | 无效的长度             | ❌   | ❌   | ✅   |
-| 0x02       | dataFormatInvalid       | 无效的格式             | ❌   | ❌   | ✅   |
-| 0x03       | invalidDataSize         | 错误的数据大小         | ❌   | ❌   | ✅   |
-| 0x04       | insufficientResource    | 资源不足以执行当前命令 | ❌   | ❌   | ✅   |
-| 0x05       | subFunctionNotSupported | 子功能不支持           | ❌   | ❌   | ✅   |
-| 0x06       | noMemory                | 内存不足               | ❌   | ❌   | ✅   |
-| 0x07       | invalidAddressResponse  | 错误的地址回复         | ❌   | ❌   | ✅   |
-| 0x08       | keyInvalid              | 无效的密钥             | ❌   | ❌   | ✅   |
-| 0x09       | delayNotMet             | 延时未达到预期时长     | ❌   | ❌   | ✅   |
-| 0x0A       | invalidState            | 无效的状态             | ❌   | ❌   | ✅   |
-| 0x0B       | invalidParameter        | 无效的参数             | ❌   | ❌   | ✅   |
-| 0x0C       | busy                    | 忙碌                   | ❌   | ❌   | ✅   |
-| 0x0D       | peripheralNotSupported  | 不支持的外设操作       | ❌   | ❌   | ✅   |
-| 0x0E       | programmingError        | 编程错误               | ❌   | ❌   | ✅   |
-| 0x0F       | sensorNotReady          | 传感器未就绪           | ❌   | ❌   | ✅   |
-| 0x10       | invalidState            | 无效的状态             | ❌   | ❌   | ✅   |
-| 0x20       | dfu                     | DFU命令负响应          | ❌   | ❌   | ✅   |
-| 0x21       | file                    | 文件命令负响应         | ❌   | ❌   | ✅   |
-| 0xF8-0xFE  | RFU                     | 内部使用(RFU)          | ❌   | ❌   | ❌   |
-| 0xFF       | unknownError            | 未知错误               | ❌   | ❌   | ✅   |
+| 0x01       | lengthError             | Invalid length | ❌   | ❌   | ✅   |
+| 0x02       | dataFormatInvalid       | Invalid format | ❌   | ❌   | ✅   |
+| 0x03       | invalidDataSize         | Incorrect data size | ❌   | ❌   | ✅   |
+| 0x04       | insufficientResource    | Insufficient resources to execute the current command | ❌   | ❌   | ✅   |
+| 0x05       | subFunctionNotSupported | Sub-function not supported | ❌   | ❌   | ✅   |
+| 0x06       | noMemory                | Insufficient memory | ❌   | ❌   | ✅   |
+| 0x07       | invalidAddressResponse  | Invalid address response | ❌   | ❌   | ✅   |
+| 0x08       | keyInvalid              | Invalid key  | ❌   | ❌   | ✅   |
+| 0x09       | delayNotMet             | The delay did not reach the expected time | ❌   | ❌   | ✅   |
+| 0x0A       | invalidState            | Invalid state | ❌   | ❌   | ✅   |
+| 0x0B       | invalidParameter        | Invalid parameter | ❌   | ❌   | ✅   |
+| 0x0C       | busy                    | Busy               | ❌   | ❌   | ✅   |
+| 0x0D       | peripheralNotSupported  | Unsupported peripheral operation | ❌   | ❌   | ✅   |
+| 0x0E       | programmingError        | Programming error | ❌   | ❌   | ✅   |
+| 0x0F       | sensorNotReady          | Sensor not ready | ❌   | ❌   | ✅   |
+| 0x10       | invalidState            | Invalid state | ❌   | ❌   | ✅   |
+| 0x20       | dfu                     | DFU command response | ❌   | ❌   | ✅   |
+| 0x21       | file                    | File command response | ❌   | ❌   | ✅   |
+| 0xF8-0xFE  | RFU                     | Reserved for internal use (RFU) | ❌   | ❌   | ❌   |
+| 0xFF       | unknownError            | Unknown error  | ❌   | ❌   | ✅   |
 
 Note:
 
-1. 当前的 `key`列表不代表功能，而代表负响应的 `类型`。
-2. `0x00- Success` 在本协议中不再出现，正响应有对应的回复方式。
-3. 本章中的 `len-key-value`, `value`作为对 `key`的扩展补充说明。
-4. 常用功能尽量使用单个 `key`来直接回复失败原因。
-5. 不常用的功能，则尽可能使用扩展 `key`来回复失败原因。
+1. The current key list does not represent functions; instead, it represents types of negative responses.
+2. `0x00 – Success` will no longer appear in this protocol, as positive responses have their own corresponding reply format.
+3. In this section, for `len-key-value`, the `value` serves as an extended supplementary explanation for the
+   key
+4. For commonly used functions, try to use a single key to directly indicate the reason for failure.
+5. For less frequently used functions, use extended keys whenever possible to indicate the reason for failure.
 
 ---
 
-## 类型说明
+## Catagory Description
 
 ---
 
-### DFU命令负响应
+### Negative Response for DFU Command
 
-**负响应描述**
+**Description**
 
-当前负响应代码，专用于 `DFU`命令下发操作时，回复的命令失败原因。
+The current negative response codes are specifically used to indicate the reasons for command failure when
+executing DFU command operations.
 
-**通知数据格式**
+**Notification data format**
 
-| Byte No. | Parameter | Type | Converter | Description          |
-| -------- | --------- | ---- | --------- | -------------------- |
-| 1        | length    | byte |           | length               |
-| 2        | key       | byte |           | key                  |
-| 3        | code      | byte |           | 扩展代码，见下面列表 |
+| Byte No. | Parameter | Type | Converter | Description                                      |
+| -------- | --------- | ---- | --------- | ------------------------------------------------ |
+| 1        | length    | byte |           | length                                           |
+| 2        | key       | byte |           | key                                              |
+| 3        | code      | byte |           | For extended codes, refer to the list<br/>below. |
 
-* 扩展代码列表
-  *未说明的代码未使用*
+* For extended codes, refer to the list below.
+  *Codes not specified are not in use.*
 
-| code | Parameter            | 描述               | 处理方式                                                                                                                             |
-| ---- | -------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| 0x01 | invalidLength        | 无效的数据长度     | 在写入固件内容时, 必须以 `4字节`对齐，即内容的字节数必须是 `4`的整数倍                                                           |
-| 0x02 |                      |                    |                                                                                                                                      |
-| 0x03 |                      |                    |                                                                                                                                      |
-| 0x04 | insufficientResource | 资源不足           | 设备使用动态内存来存储部分数据，当数据发送过快，之前的工作未执行完毕导致没有更多的内存使用。主机需要延时一段时间后再重新发送当前命令 |
-| 0x05 |                      |                    |                                                                                                                                      |
-| 0x06 | noMemory             | 内存不足           | 同 `0x04`原因与操作                                                                                                                |
-| 0x0A | invalidState         | 无效的状态         | 文件 `key`的操作时序不对，按照 `DFU`命令顺序要求进行操作                                                                         |
-| 0x0B | invalidParameter     | 无效的参数         | 初始化包内容参数不对，无法识别到有效的参数数据                                                                                       |
-| 0x0C |                      |                    |                                                                                                                                      |
-| 0x0D | invalidAddress       | 错误的地址         | 在写固件内容时，偏移地址不一致，需要按照文件顺序写入内容                                                                             |
-| 0x0E | internalError        | 内部错误           | 函数入口参数为 `NULL`                                                                                                              |
-| 0x0F |                      |                    |                                                                                                                                      |
-| 0x11 | versionLow           | 固件版本低         | 不允许更新 `低版本的固件`。需要重新提供固件                                                                                        |
-| 0x12 | signatureInvalid     | 签名校验失败       | 初始化数据包签名未通过，检查 `crypto-lib`是否一致                                                                                  |
-| 0x13 | fileSizeInvalid      | 文件大小不符合要求 | 当前待升级的文件过小或过大, 异常的文件升级包                                                                                         |
-| 0x14 | fileCrcError         | 文件CRC错误        | 文件内容与初始化包中的文件 `CRC`描述不一致                                                                                         |
-| 0x15 | timeout              | 超时               | 程序执行当前命令超时，前置工作未完成，请重发此命令                                                                                   |
-| 0x16 | fileTypeUnsupported  | 文件类型不支持     | 当前固件未支持此类型的文件更新，请检查生成包是否有误                                                                                 |
-| 0x17 | modelError           | 模型错误           | 当前升级包非当前设备程序所支持的, 无法兼容                                                                                           |
-| 0x18 | customFlagInvalid    | 自定义标志无效     | 当前固件包自定义标志 与 固件所要求的不一致，无法兼容, 检查固件包                                                                     |
+| code | Parameter            | Description                          | Handling Method                                              |
+| ---- | -------------------- | ------------------------------------ | ------------------------------------------------------------ |
+| 0x01 | invalidLength        | Invalid data length                  | During firmware content writing, data must be aligned on a 4-byte boundary, meaning the total number of bytes must be an integer multiple of 4. |
+| 0x02 |                      |                                      |                                                              |
+| 0x03 |                      |                                      |                                                              |
+| 0x04 | insufficientResource | Insufficient resources               | The device utilizes dynamic memory to store part of the data. If data is transmitted too rapidly, incomplete execution of previous operations may lead to insufficient available memory. In such cases, the host must delay for a specified period before resending the current command. |
+| 0x05 |                      |                                      |                                                              |
+| 0x06 | noMemory             | Insufficient memory                  | Same reason and operation as 0x04                            |
+| 0x0A | invalidState         | Invalid state                        | The operation sequence of the file key is incorrect. Please perform the operation according to the DFU command sequence requirements. |
+| 0x0B | invalidParameter     | Invalid parameter                    | The parameters in the initialization packet are incorrect, and no valid<br/>parameter data can be identified. |
+| 0x0C |                      |                                      |                                                              |
+| 0x0D | invalidAddress       | Invalid address                      | The offset address is inconsistent when writing firmware content. The<br/>content must be written in the order of the file. |
+| 0x0E | internalError        | Internal error                       | The function entry parameter is NULL.                        |
+| 0x0F |                      |                                      |                                                              |
+| 0x11 | versionLow           | Firmware version is too low          | Updating to a lower firmware version is not allowed. A new firmware must be provided |
+| 0x12 | signatureInvalid     | Signature verification failed        | The initialization packet signature did not pass verification. Check whether the crypto library is consistent. |
+| 0x13 | fileSizeInvalid      | File size does not meet requirements | The file to be upgraded is either too small or too large, indicating an abnormal upgrade package. |
+| 0x14 | fileCrcError         | File CRC error                       | File content does not match the file CRC described in the initialization packet. |
+| 0x15 | timeout              | Timeout                              | Execution of the current command has timed out. The prerequisite tasks were not completed; please resend this command. |
+| 0x16 | fileTypeUnsupported  | File type not supported              | The current firmware does not support updating this type of file. Please check whether the generated package is correct. |
+| 0x17 | modelError           | Model error                          | The current upgrade package is not supported by the device’s program and is incompatible. |
+| 0x18 | customFlagInvalid    | Invalid custom flag                  | The custom flag in the current firmware package does not match the requirement of the firmware, making it incompatible. Please check the firmware package. |
 
 ---
 
-### 文件命令负响应
+### File Command Negative Response
 
-**负响应描述**
+**Description**
 
-当前负响应代码，专用于 `File`命令下发操作时，回复的命令失败原因。
+The current negative response codes are specifically used to indicate the reasons for command failure when executing File command operations.
 
-**通知数据格式**
+**Notification Data Format**
 
-| Byte No. | Parameter | Type | Converter | Description          |
-| -------- | --------- | ---- | --------- | -------------------- |
-| 1        | length    | byte |           | length               |
-| 2        | key       | byte |           | key                  |
-| 3        | code      | byte |           | 扩展代码，见下面列表 |
+| Byte No. | Parameter | Type | Converter | Description                                  |
+| -------- | --------- | ---- | --------- | -------------------------------------------- |
+| 1        | length    | byte |           | length                                       |
+| 2        | key       | byte |           | key                                          |
+| 3        | code      | byte |           | For extended codes, refer to the list below. |
 
-* 扩展代码列表
+* Extended Code List
 
-| code | Parameter             | 描述                       | 处理方式                                                         |
-| ---- | --------------------- | -------------------------- | ---------------------------------------------------------------- |
-| 0x01 | fileNotOpen           | 文件未打开                 | 操作文件时，需要先打开文件                                       |
-| 0x02 | threadOccupied        | 线程被占用                 | 已有其他文件打开，需要等待上一个文件关闭后才能打开新的文件操作   |
-| 0x03 | fileTypeUnsupported   | 文件类型不支持             | 当前的文件类型在固件中不支持                                     |
-| 0x04 | fileTypeNotFound      | 未发现文件类型             | 检查命令中文件类型是否正确                                       |
-| 0x05 | ioNotImplemented      | 当前文件类型未实现IO操作   | 协议规定的文件类型，但是当前程序上未找到它的实现接口             |
-| 0x06 | ioBusy                | IO忙碌                     | 已打开同一类型的文件                                             |
-| 0x07 | processing            | 正在处理                   | 正在处理，延时重试                                               |
-| 0x08 | noWritePermission     | 无写入操作权限             | 当前文件类型未申请写入权限                                       |
-| 0x09 | writeOffsetError      | 写入偏移地址错误           | 文件内容未按顺序写入                                             |
-| 0x0A | insufficientResource  | 资源不足                   | 程序没有足够的内存来保存当前写入内容，主机延时再次操作           |
-| 0x0B | fileSizeExceeded      | 文件超出大小               | 写入的文件超过了参数中的大小，检查是参数传错误，还是写入过程出错 |
-| 0x0C | operationNotSupported | 操作不支持                 | 当前文件类型不支持此操作                                         |
-| 0x0D | moduleNotOpen         | 模块未打开，无法执行操作   | 部分文件写入外部模块中，操作前需要先让模块正常工作               |
-| 0x10 | modeLengthError       | 文件参数- 模式长度错误     | 检查命令格式是否正确                                             |
-| 0x11 | typeLengthError       | 文件参数- 类型参数长度错误 | 检查命令格式是否正确                                             |
-| 0x12 | fileSizeLengthError   | 文件参数- 文件大小长度错误 | 检查命令格式是否正确                                             |
-| 0x13 | fileNameLengthError   | 文件参数- 名称长度错误     | 检查命令格式是否正确                                             |
-| 0x14 | filePathLengthError   | 文件参数- 路径长度错误     | 检查命令格式是否正确                                             |
-| 0x15 | crc32LengthError      | 文件参数- CRC32长度错误    | 检查命令格式是否正确                                             |
-| 0x16 | sum32LengthError      | 文件参数- SUM32长度错误    | 检查命令格式是否正确                                             |
-| 0x17 | md5LengthError        | 文件参数- MD5长度错误      | 检查命令格式是否正确                                             |
-| 0x18 | undefinedParameter    | 有未定义的参数传入         | 检查命令格式是否正确                                             |
-| 0x19 | pathNameTooLong       | 路径和名称长度超过指定范围 | 检查命令中路径文件是否符合要求                                   |
-| 0x1A | checkTypeUnsupported  | 不支持的校验方式           | 检查命令格式是否正确                                             |
-| 0x1B | invalidFilePath       | 无效文件完整路径           | 检查命令格式是否正确, 要求填写路径+文件名参数                    |
-| 0x1C | fileCheckFailed       | 文件校验失败               | 文件写入校验失败，重新写入                                       |
+| code | Parameter             | Description                                         | Handling Method                                              |
+| ---- | --------------------- | --------------------------------------------------- | ------------------------------------------------------------ |
+| 0x01 | fileNotOpen           | File not opened                                     | the file must be opened before performing operations on it.  |
+| 0x02 | threadOccupied        | Thread occupied                                     | another file is already open. You must wait for the<br/>previous file to be closed before opening a new one. |
+| 0x03 | fileTypeUnsupported   | File type not supported                             | The current file type is not supported in the firmware.      |
+| 0x04 | fileTypeNotFound      | File type not found                                 | please check whether the file type in the command is<br/>correct. |
+| 0x05 | ioNotImplemented      | I/O operation not implemented for current file type | The file type is defined in the protocol, but its<br/>implementation interface was not found in the current<br/>program. |
+| 0x06 | ioBusy                | IO occupied                                         | a file of the same type is already open.                     |
+| 0x07 | processing            | Under processing                                    | Processing – retry after a delay.                            |
+| 0x08 | noWritePermission     | No write permission                                 | The current file type has not been granted write access.     |
+| 0x09 | writeOffsetError      | Write offset address error                          | The file content was not written in sequence.                |
+| 0x0A | insufficientResource  | Insufficient resources                              | he program does not have enough memory to store the<br/>current write content. The host should delay before<br/>retrying the operation. |
+| 0x0B | fileSizeExceeded      | File size exceeded                                  | the written file exceeds the size specified in the<br/>parameters. Check whether the parameter was passed<br/>incorrectly or if an error occurred during the writing<br/>process. |
+| 0x0C | operationNotSupported | Operation not supported                             | the current file type does not support this operation.       |
+| 0x0D | moduleNotOpen         | Module not opened,cannot execute operation          | Some files are written to an external module, which must be operating normally before performing the operation. |
+| 0x10 | modeLengthError       | File parameter –mode length error                   | Check whether the command format is correct                  |
+| 0x11 | typeLengthError       | File parameter – type parameter length error        | Check whether the command format is correct                  |
+| 0x12 | fileSizeLengthError   | File parameter – file size length error             | Check whether the command format is correct                  |
+| 0x13 | fileNameLengthError   | File parameter –name length error                   | Check whether the command format is correct                  |
+| 0x14 | filePathLengthError   | File parameter – path length error                  | Check whether the command format is correct                  |
+| 0x15 | crc32LengthError      | File parameter –CRC32 length error                  | Check whether the command format is correct                  |
+| 0x16 | sum32LengthError      | File parameter –SUM32 length error                  | Check whether the command format is correct                  |
+| 0x17 | md5LengthError        | File parameter – MD5 length error                   | Check whether the command format is correct                  |
+| 0x18 | undefinedParameter    | Undefined parameter passed in                       | Check whether the command format is correct                  |
+| 0x19 | pathNameTooLong       | Path and name length exceed specified limits        | Check whether the file path in the command meets the<br/>requirements. |
+| 0x1A | checkTypeUnsupported  | Unsupported verification method                     | Check whether the command format is correct                  |
+| 0x1B | invalidFilePath       | Invalid full file path                              | Check whether the command format is correct – the<br/>path and file name parameters are required. |
+| 0x1C | fileCheckFailed       | File verification failed                            | File write verification failed – rewrite the file.           |
